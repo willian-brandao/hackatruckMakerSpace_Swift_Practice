@@ -1,0 +1,51 @@
+import UIKit
+
+class ViewController: UIViewController{
+
+  //declaração das variaveis 
+  
+  @IBOutlet weak var pesoInserir: UITextField!
+  
+  @IBOutlet weak var alturaInserir: UITextField!
+  
+  @IBOulet weak var resultadoExibir: UILabel!
+  
+  // função que irá fazer o calculo do IMC 
+  @IBAction func calcularButao(_ sender: Any) {
+      
+      // os campos de inserção recebem dados do tipo Float, porém eles tem que retornar texto 
+      // nessas linhas foram feito casts de texto para Float
+      
+      let peso = Float(pesoInserir.text!)
+      let altura = Float(alturaInserir.text!)
+      
+      // calculo do IMC que é o índice de massa corporal humano, dado por peso dividido por altura ao quadrado
+      let resultadoIMC = peso! / (altura! * altura!)
+      
+      // nesta linha foi feita para exibir o resultado em numeros 
+      //String(format:"%.1f", resultado,2)
+      
+      // foi criada uma estrutura de decisão para retornar os índices de acordo com o indice IMC
+      // as Strings que estão na documentação do projeto
+      // a constante resultadoIMC está recebendo os valores de texto de acordo com os resultados gerados pelo calculo
+      
+      if( resultadoIMC <= 18.5){
+         resultadoExibir.text = "abaixo do peso"
+      } else if( resultadoIMC <= 24.9 ){
+         resultadoExibir.text = "Peso Ideal (Parabéns!)"
+      } else if ( resultadoIMC <= 29.9 ) {
+         resultadoExibir.text = "Levemente acima do peso"
+      } else if ( resultadoIMC <= 34.9 ) {
+         resultadoExibir.text = "Obesidade Grau I"
+      } else if ( resultadoIMC <= 39.9) {
+         resultadoExibir.text = "Obesidade Grau II"
+      }else {
+         resultadoExibir.tex = "Obesidade Grau III"
+      }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+  }
+}
